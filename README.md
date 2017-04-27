@@ -49,12 +49,9 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
  
 
 ## Formalisation en Forme Normale Conjonctive (FNC) :
-
-   Vide    | Vide | Ile a (2) | Vide
+1          |2     |3          |4
 -----------|------|-----------|------
+Vide       |Vide  |**Ile a (2)**  |Vide
    Vide    | Vide |   Vide    | Vide
------------|------|-----------|------
    Vide    | Vide |   Vide    | Vide
------------|------|-----------|------
-Ile c (1)  | Vide | Ile b (3) | Vide
------------|------|-----------|------
+**Ile c (1)**  | Vide | **Ile b (3**) | Vide
