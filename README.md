@@ -31,18 +31,18 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
 * **Définition C(a,b):**
 	> *Il(a)⋀Il(b)⋀Y(a)=Y(b)*
 * **Définition Cr(a,b,c,d):**
- > *L(a,b)⋀C(c,d)⋀Y(a)<Y(c)<Y(b)⋀ X(c)<X(a)<X(d)*
+ 	> *L(a,b)⋀C(c,d)⋀Y(a)<Y(c)<Y(b)⋀ X(c)<X(a)<X(d)*
 * **Les ponts sont horizontaux ou verticaux:**
- > *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))*
+ 	> *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))*
 * **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
 	> *∀a (Il(a)⇒P(a,a)⋀P(a',a')⋀P(a,a'))*
 * **Les ponts ne se croisent pas:**
 	> *∀a,b,c,d ( Cr(a,b,c,d)⇒(¬P(a,b)⋁¬P(c,d)))*
 * **Il y a deux ponts ou moins entre 2 îles :**
- > *∀a,b,a',b' ( Il(a)⋀Il(b)⋀Il'(a')⋀Il'(b')⋀a≠b⇒(P(a',b')⇒P(a,b))) *
+ 	> *∀a,b,a',b' ( Il(a)⋀Il(b)⋀Il'(a')⋀Il'(b')⋀a≠b⇒(P(a',b')⇒P(a,b))) *
 * **Le nombre de ponts partant de chaque île correspond au plus au nombre indiqué sur l’île:**
- > *∀a (Il(a)⇒¬(∃b1, ... ,bf(a)+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a)+1)⋁Il'(bf(a)+1))⋀P(a,b1)⋀
+ 	> *∀a (Il(a)⇒¬(∃b1, ... ,bf(a)+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a)+1)⋁Il'(bf(a)+1))⋀P(a,b1)⋀
  ... ⋀P(a,bf(a)+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)+1)))*
 * **Le nombre de ponts partant de chaque île correspond au moins au nombre indiqué sur l’île:**
- > *∀a (Il(a)⇒(∃b1, ... ,bf(a) ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a))⋁Il'(bf(a)))⋀P(a,b1)⋀
+ 	> *∀a (Il(a)⇒(∃b1, ... ,bf(a) ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a))⋁Il'(bf(a)))⋀P(a,b1)⋀
  ... ⋀P(a,bf(a))⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)-1)))*
