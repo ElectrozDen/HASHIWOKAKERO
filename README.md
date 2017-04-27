@@ -73,7 +73,7 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 ab  P(a,b) L(a,b)C(a,b))) ((Il(a) Il(c) ac  P(a,c) <br/>
 L(a,c)C(a,c))  (Il(a) Il(c) ac  P(a,c) L(a,c)C(a,c))) <br/>
 ((Il(b) Il(c) bc  P(b,c) L(b,c)C(b,c))  (Il(b) Il(c)<br/>
- bc  P(b,c) L(b,c)C(b,c))) *
+ bc  P(b,c) L(b,c)C(b,c)))*
  
 
 
