@@ -26,7 +26,7 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
 
 ## Propriétés:
 * **Définition L(a,b):**
-	> *Il(a)⋀Il(b)⋀X(a)=X(b)*
+	> ***Il(a)⋀Il(b)⋀X(a)=X(b)***
 * **Définition C(a,b):**
 	> *Il(a)⋀Il(b)⋀Y(a)=Y(b)*
 * **Définition Cr(a,b,c,d):**
