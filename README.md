@@ -66,24 +66,13 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 **Les ponts sont horizontaux ou verticaux:**
 
 ![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/test.PNG)
-> *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))<br/>
-≡∀a,b ((Il(a)⋁Il(b)⋁a=b⋁P(a,b)⋁L(a,b)⋁C(a,b))⋀(Il(a)⋁Il(b)⋁<br/>
- a=b⋁P(a,b)⋁L(a,b)⋁C(a,b)))<br/>
-((Il(a) Il(b) ab  P(a,b) L(a,b)C(a,b))  (Il(a) Il(b)<br/>
-ab  P(a,b) L(a,b)C(a,b))) ((Il(a) Il(c) ac  P(a,c) <br/>
-L(a,c)C(a,c))  (Il(a) Il(c) ac  P(a,c) L(a,c)C(a,c))) <br/>
-((Il(b) Il(c) bc  P(b,c) L(b,c)C(b,c))  (Il(b) Il(c)<br/>
- bc  P(b,c) L(b,c)C(b,c)))*
  
 
 
 **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
 
 
-> *∀a (Il(a)⇒P(a,a)⋀P(a',a')⋀P(a,a'))<br/>
-(Il(a)P(a,a))(Il(a)P(a',a'))(Il(a)P(a,a'))<br/>
-(Il(b)P(b,b))(Il(b)P(b',b'))(Il(b)P(b,b'))<br/>
-(Il(c)P(c,c))(Il(c)P(c',c'))(Il(c)P(c,c'))*
+![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/reli.PNG)
 
 
 **Les ponts ne se croisent pas:**
@@ -95,21 +84,13 @@ Etant donné la configuration de notre exemple, cette règle ne s’appliquera p
 **Il y a deux ponts ou moins entre 2 îles :**
 
 
-> *∀a,b,a',b' ( Il(a)⋀Il(b)⋀Il'(a')⋀Il'(b')⋀a≠b⇒(P(a',b')⇒P(a,b)))<br/>
-a,b,a',b'(Il(a)Il(b) Il'(a') Il'(b')a=b (P(a',b')) P(a,b))<br/>
-(Il(a)Il(b) Il'(a') Il'(b')a=b (P(a',b') P(a,b))<br/>
-(Il(a)Il(c) Il'(a') Il'(c')a=c (P(a',c') P(a,c))<br/>
-(Il(b)Il(c) Il'(b') Il'(c')b=c (P(b',c') P(b,c))*
+![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/2P.PNG)
 
 
 **Le nombre de ponts partant de chaque île correspond au plus au nombre indiqué sur l’île:**
 
 
-> *∀a (Il(a)⇒¬(∃b1, ... ,bf(a)+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a)+1)⋁Il'(bf(a)+1))⋀P(a,b1)⋀<br/>
- ... ⋀P(a,bf(a)+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)+1)))<br/>
-a (Il(a)  ( b1, ... ,bf(a)+1 ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))<br/>
- P(a,b1)  ...  P(a,bf(a)+1) a=b1 ...  b1=b2  ...  bf(a)=bf(a)+1)))
- ...*
+![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/auplus.PNG)
 
 
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
@@ -119,16 +100,7 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 **Le nombre de ponts partant de chaque île correspond au moins au nombre indiqué sur l’île:**
 
 
- > *∀a (Il(a)⇒(∃b1, ... ,bf(a) ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a))⋁Il'(bf(a)))⋀P(a,b1)⋀<br/>
- ... ⋀P(a,bf(a))⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)-1)))<br/>
-a(Il(a) (b1, ... ,bf(a) ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))  P(a,b1) ...<br/>
- P(a,bf(a))b1b2 ... bf(a)-1bf(a))))<br/>
-→ (ile a)<br/>
-(Il(a) (b1, ... ,bf(a) ((Il(b1)  Il'(b1))  ...  (Il(bf(a))  Il'(bf(a)))  P(a,b1) ...<br/>
- P(a,bf(a))b1b2 ... bf(a)-1bf(a))))<br/>
-(Il(a) (b1,b2 ((Il(b1)  Il'(b1))  (Il(b2)  Il'(b2))  P(a,b1) <br/>
- P(a,b2))b1b2)))
-...*
+![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/aumoins.PNG)
 
 
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
