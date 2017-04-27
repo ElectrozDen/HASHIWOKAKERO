@@ -78,6 +78,9 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 **Les ponts ne se croisent pas:**
 
 
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/crois.PNG)
+
+
 Etant donné la configuration de notre exemple, cette règle ne s’appliquera pas.
 
 
