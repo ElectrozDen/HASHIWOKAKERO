@@ -65,14 +65,14 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 
 **Les ponts sont horizontaux ou verticaux:**
 
-![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/test.PNG)
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/test.PNG)
  
 
 
 **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
 
 
-![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/reli.PNG)
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/reli.PNG)
 
 
 **Les ponts ne se croisent pas:**
@@ -84,13 +84,13 @@ Etant donné la configuration de notre exemple, cette règle ne s’appliquera p
 **Il y a deux ponts ou moins entre 2 îles :**
 
 
-![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/2P.PNG)
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/2P.PNG)
 
 
 **Le nombre de ponts partant de chaque île correspond au plus au nombre indiqué sur l’île:**
 
 
-![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/auplus.PNG)
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/auplus.PNG)
 
 
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
@@ -100,7 +100,7 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 **Le nombre de ponts partant de chaque île correspond au moins au nombre indiqué sur l’île:**
 
 
-![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/aumoins.PNG)
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/aumoins.PNG)
 
 
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
