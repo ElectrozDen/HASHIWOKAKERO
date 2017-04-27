@@ -17,15 +17,14 @@ et le nombre de pont partant de chaque île doit correspondre au nombre indiqué
 ## Caractérisations:
 Les variables utilisées pour les coordonnées sont un couple de naturels compris dans l’intervalle [1;L], pour L la taille de la grille. Le nombre indiqué sur une île est un naturel compris dans [1;8].
 * Il(a) alors a est une île
-* P(a,b) alors il existe un pont entre a et b (avec symétrie : P(a,b)P(b,a) )
-* Il’(a’) alors a’ est l’île double de l’île définie par Il(a) (avec l’équivalence :P(a',b)P(b',a))
+* P(a,b) alors il existe un pont entre a et b (avec symétrie : P(a,b)⟺P(b,a) )
+* Il’(a’) alors a’ est l’île double de l’île définie par Il(a) (avec l’équivalence :P(a',b)⟺P(b',a))
 * f(a) renvoie n le nombre indiqué sur a
 * L(a,b) alors a et b sont sur la même ligne
 * C(a,b) alors a et b sont sur la même colonne
 * Cr(a,b,c,d) alors a,b,c et d sont en situation de croisement
 
 ## Propriétés:
-∀ ∃ ¬ ⋀ ⋁ ⇒ ≠
 * **Définition L(a,b):**
 	> *Il(a)⋀Il(b)⋀X(a)=X(b)*
 * **Définition C(a,b):**
@@ -46,3 +45,16 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
 * **Le nombre de ponts partant de chaque île correspond au moins au nombre indiqué sur l’île:**
  	> *∀a (Il(a)⇒(∃b1, ... ,bf(a) ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a))⋁Il'(bf(a)))⋀P(a,b1)⋀
  ... ⋀P(a,bf(a))⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)-1)))*
+ 
+ 
+
+## Formalisation en Forme Normale Conjonctive (FNC) :
+
+   Vide    | Vide | Ile a (2) | Vide
+-----------|------|-----------|------
+   Vide    | Vide |   Vide    | Vide
+-----------|------|-----------|------
+   Vide    | Vide |   Vide    | Vide
+-----------|------|-----------|------
+Ile c (1)  | Vide | Ile b (3) | Vide
+-----------|------|-----------|------
