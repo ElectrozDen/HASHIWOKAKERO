@@ -60,26 +60,26 @@ On note les îles a, b, c auxquelles on associe les îles doubles a’, b’, c�
 Les ponts possibles sont donc : 
 
 
-` P(a,a) P(b,b) P(c,c) P(a,b) P(a,c) P(b,c) P(a',a') P(b',b') P(c',c')
-P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')` 
+*` P(a,a)⋁P(b,b)⋁P(c,c)⋁P(a,b) P(a,c)⋁P(b,c)⋁P(a',a')⋁P(b',b')⋁P(c',c')
+P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`* 
 
 **Les ponts sont horizontaux ou verticaux:**
 
 
-`a,b (Il(a) Il(b)  ab  P(a,b)((L(a,b)C(a,b))(L(a,b)C(a,b)))
-a,b ((Il(a) Il(b) ab  P(a,b) L(a,b)C(a,b))  (Il(a) Il(b)
- ab  P(a,b) L(a,b)C(a,b)))
+``` ∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))
+≡∀a,b ((Il(a)⋁Il(b)⋁a=b⋁P(a,b)⋁L(a,b)⋁C(a,b))⋀(Il(a)⋁Il(b)⋁
+ a=b⋁P(a,b)⋁L(a,b)⋁C(a,b)))
 ((Il(a) Il(b) ab  P(a,b) L(a,b)C(a,b))  (Il(a) Il(b)
 ab  P(a,b) L(a,b)C(a,b))) ((Il(a) Il(c) ac  P(a,c) 
 L(a,c)C(a,c))  (Il(a) Il(c) ac  P(a,c) L(a,c)C(a,c))) 
 ((Il(b) Il(c) bc  P(b,c) L(b,c)C(b,c))  (Il(b) Il(c)
- bc  P(b,c) L(b,c)C(b,c)))`
+ bc  P(b,c) L(b,c)C(b,c))) ```
 
 
 **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
 
 
-`a (Il(a) P(a,a)  P(a',a')  P(a,a'))
+`∀a (Il(a)⇒P(a,a)⋀P(a',a')⋀P(a,a'))
 (Il(a)P(a,a))(Il(a)P(a',a'))(Il(a)P(a,a'))
 (Il(b)P(b,b))(Il(b)P(b',b'))(Il(b)P(b,b'))
 (Il(c)P(c,c))(Il(c)P(c',c'))(Il(c)P(c,c'))`
@@ -94,7 +94,7 @@ Etant donné la configuration de notre exemple, cette règle ne s’appliquera p
 **Il y a deux ponts ou moins entre 2 îles :**
 
 
-`a,b,a',b' ( Il(a)  Il(b)  Il'(a')  Il'(b') ab (P(a',b') P(a,b))) 
+`∀a,b,a',b' ( Il(a)⋀Il(b)⋀Il'(a')⋀Il'(b')⋀a≠b⇒(P(a',b')⇒P(a,b)))
 a,b,a',b'(Il(a)Il(b) Il'(a') Il'(b')a=b (P(a',b')) P(a,b))
 (Il(a)Il(b) Il'(a') Il'(b')a=b (P(a',b') P(a,b))
 (Il(a)Il(c) Il'(a') Il'(c')a=c (P(a',c') P(a,c))
@@ -104,8 +104,8 @@ a,b,a',b'(Il(a)Il(b) Il'(a') Il'(b')a=b (P(a',b')) P(a,b))
 **Le nombre de ponts partant de chaque île correspond au plus au nombre indiqué sur l’île:**
 
 
-`a (Il(a) ( b1, ... ,bf(a)+1 ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))  P(a,b1)
- ...  P(a,bf(a)+1) ab1  ...  b1b2 ...  bf(a)bf(a)+1)))
+`∀a (Il(a)⇒¬(∃b1, ... ,bf(a)+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a)+1)⋁Il'(bf(a)+1))⋀P(a,b1)⋀
+ ... ⋀P(a,bf(a)+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)+1)))
 a (Il(a)  ( b1, ... ,bf(a)+1 ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))
  P(a,b1)  ...  P(a,bf(a)+1) a=b1 ...  b1=b2  ...  bf(a)=bf(a)+1)))
  ...`
@@ -117,8 +117,8 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 **Le nombre de ponts partant de chaque île correspond au moins au nombre indiqué sur l’île:**
 
 
- `a (Il(a) b1, ... ,bf(a) ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))  P(a,b1)  ...
-  P(a,bf(a))ab1  ... b1b2 ... bf(a)-1bf(a)) ))
+ `∀a (Il(a)⇒(∃b1, ... ,bf(a) ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bf(a))⋁Il'(bf(a)))⋀P(a,b1)⋀
+ ... ⋀P(a,bf(a))⋀a≠b1⋀...⋀b1≠b2⋀...⋀bf(a)≠bf(a)-1)))
 
 a(Il(a) (b1, ... ,bf(a) ((Il(b1)  Il'(b1))  ...  (Il(bf(a)+1)  Il'(bf(a)+1))  P(a,b1) ...
  P(a,bf(a))b1b2 ... bf(a)-1bf(a))))
