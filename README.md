@@ -65,7 +65,7 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 
 **Les ponts sont horizontaux ou verticaux:**
 
-
+![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/test.PNG)
 > *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))<br/>
 ≡∀a,b ((Il(a)⋁Il(b)⋁a=b⋁P(a,b)⋁L(a,b)⋁C(a,b))⋀(Il(a)⋁Il(b)⋁<br/>
  a=b⋁P(a,b)⋁L(a,b)⋁C(a,b)))<br/>
