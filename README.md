@@ -66,14 +66,14 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 **Les ponts sont horizontaux ou verticaux:**
 
 
-``` ∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))
+`` ∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))<br/>
 ≡∀a,b ((Il(a)⋁Il(b)⋁a=b⋁P(a,b)⋁L(a,b)⋁C(a,b))⋀(Il(a)⋁Il(b)⋁
  a=b⋁P(a,b)⋁L(a,b)⋁C(a,b)))
 ((Il(a) Il(b) ab  P(a,b) L(a,b)C(a,b))  (Il(a) Il(b)
 ab  P(a,b) L(a,b)C(a,b))) ((Il(a) Il(c) ac  P(a,c) 
 L(a,c)C(a,c))  (Il(a) Il(c) ac  P(a,c) L(a,c)C(a,c))) 
 ((Il(b) Il(c) bc  P(b,c) L(b,c)C(b,c))  (Il(b) Il(c)
- bc  P(b,c) L(b,c)C(b,c))) ```
+ bc  P(b,c) L(b,c)C(b,c))) ``
 
 
 **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
