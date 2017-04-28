@@ -372,5 +372,45 @@ Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche 
 * solve modele
  > Résous le modéle
  
+ **Exemple:**
  
+ 
+ ```
+ new modele
+add 1 -5 4
+add -1 5 3 4
+add -3 -4
+print modele
+(1 V -5 V 4)^
+(-1 V 5 V 3 V 4)^
+(-3 V -4)
+to dimacs test.dim
+print dimacs
+p cnf 5 3
+1 -5 4 0
+-1 5 3 4 0
+-3 -4 0
 
+dimacs 3sat
+print dimacs
+p cnf 52 5
+1 -5 4 0
+-1 5 22 0
+3 4 -22 0
+-3 -4 52 0
+-3 -4 -52 0
+
+to modele
+print modele
+(1 V -5 V 4)^
+(-1 V 5 V 22)^
+(3 V 4 V -22)^
+(-3 V -4 V 52)^
+(-3 V -4 V -52)
+new modele
+add -11
+add 11
+modele 3sat
+solve modele
+La fnc est insatisfaisable
+```
