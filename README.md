@@ -344,5 +344,33 @@ Ce fichier contient la fonction qui permet de transormer un ModeleDimacs en 3Sat
 
 ### Solveur.java
 
-Permet de résoudre un ModeleDimacs ou un Dimacs directement et affiche sa satisfaisabilité ainsi que les solutions
+Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche sa satisfaisabilité ainsi que les solutions
+
+### CommandsManager.java
+
+**Commandes**:
+* new dimacs [nom_fichier]
+ > Créer un objet dimacs avec [nom_fichier] comme entrée
+* new modele
+ > Créer un nouveau modele pour l'utilisateur
+* add [variables]
+ > Ajoute une clause au modele avec les variables données en entrée
+* print modele
+ > Affiche le modéle
+* print dimacs
+ > Affiche le contenu du fichier dimacs
+* to dimacs [nom_fichier]
+ > Créer un fichier Dimacs à partir du modéle creer
+* to modele
+ > Récupere le modele à partir d'un fichier dimacs
+* dimacs 3sat
+ > Transforme le fichier dimacs en un fichier dimacs sous forme 3SAT
+* modele 3sat 
+ > Transforme le modele en un modele sous forme 3sat
+* solve dimacs
+ > Résous le fichier dimacs
+* solve modele
+ > Résous le modéle
+ 
+ 
 
