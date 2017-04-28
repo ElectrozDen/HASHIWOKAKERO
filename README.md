@@ -301,4 +301,48 @@ Aucun croisement entre iles
 (P(9,1) V P(9',1') V P(9',9'))
 ```
 
-Là nous pouvons voir par nous-mêmes que le seul model est P(1,9)
+Là nous pouvons voir par nous-mêmes que la seule solution est P(1,9)
+
+
+## Programme Dimacs
+
+C'est un programme en java que nous avons fait pour lire des fichiers dimacs et de transformer les clauses en 3-SAT pour utiliser le solveur à la suite (Nous avons pris le solveur SAT4J disponible sur interner)
+
+### PredicatID.java
+Même principe que le programme d'avant mais comme on travaille dans le domaine dimacs , on lui demande d'ajouter un id(positif ou négatif) qui définit la variable par exemple x1, x2
+
+```
+PredicatID pred = new PredicatID(5);
+PredicatID pred2 = new PredicatID(-5);
+```
+Les deux prédicats comportent l'id 5 mais le deuxiéme prédicat est une négation
+
+### ClauseDimacs.java
+
+Un objet qui représente une clause de PredicatID. C'est le même principe
+
+### ModeleDimacs.java
+
+C'est un objet qui représente modéle qui contient les clauses ClauseDimacs
+
+### Dimacs.java
+
+Elle représente un fichier dimacs, on l'a déclare en lui donnant le lien vers un fichier dimacs. Cet objet permet de lire un dimacs , d'afficher son contenu et d'en créer un ModeleDimacs ou d'écrire un fichier dimacs à partir d'un ModeleDimacs.
+
+```
+Dimacs dimacs = new Dimacs("mondimaxs.txt");
+ModeleDimacs modele = dimacs.getModeleFromDimacs();
+//on manipule notre modele comme on veut (transormation en 3Sat par exemple)
+modele = Sat3.get3SAT(modele);
+modele.print(); // on affiche notre nouveau modéle
+dimacs.writeModele(modele);
+console.print(dimacs.readFile()); // on affiche le nouveau contenue de notr fichier dimacs
+```
+### Sat3.java
+
+Ce fichier contient la fonction qui permet de transormer un ModeleDimacs en 3Sat (voir l'exemple au-dessus)
+
+### Solveur.java
+
+Permet de résoudre un ModeleDimacs ou un Dimacs directement et affiche sa satisfaisabilité ainsi que les solutions
+
