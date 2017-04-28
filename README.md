@@ -18,7 +18,7 @@ et le nombre de pont partant de chaque île doit correspondre au nombre indiqué
 Les variables utilisées pour les coordonnées sont un couple de naturels compris dans l’intervalle [1;L], pour L la taille de la grille. Le nombre indiqué sur une île est un naturel compris dans [1;8].
 * Il(a) alors a est une île
 * P(a,b) alors il existe un pont entre a et b (avec symétrie : P(a,b)⟺P(b,a) )
-* Il’(a’) alors a’ est l’île double de l’île définie par Il(a) (avec l’équivalence :P(a',b)⟺P(b',a))
+* Il’(a’) alors a’ est l’île double de l’île définie par Il(a) (avec l’équivalence :P(a',b)⟺P(b',a) et P(a,b')⟺P(a',b'))
 * f(a) renvoie n le nombre indiqué sur a
 * L(a,b) alors a et b sont sur la même ligne
 * C(a,b) alors a et b sont sur la même colonne
@@ -31,6 +31,8 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
 	> *Il(a)⋀Il(b)⋀Y(a)=Y(b)*
 * **Définition Cr(a,b,c,d):**
  	> *L(a,b)⋀C(c,d)⋀Y(a)<Y(c)<Y(b)⋀ X(c)<X(a)<X(d)*
+* ** Pas de ponts entre 2 îles collées:**
+	> *∀a,b (Il(a)⋀Il(b)⋀a≠b⋀(X(a)=X(b)+-1 ⋁ Y(a) == Y(b) +-1)⇒¬P(a,b)⋀¬P(a',b'))
 * **Les ponts sont horizontaux ou verticaux:**
  	> *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))*
 * **Il n’existe pas de pont reliant une île à elle-même ou à sa copie:**
@@ -62,8 +64,8 @@ On note les îles a, b, c auxquelles on associe les îles doubles a’, b’, c�
 Les ponts possibles sont donc : 
 
 
-*` P(a,a)⋁P(b,b)⋁P(c,c)⋁P(a,b)⋁P(a,c)⋁P(b,c)⋁P(a',a')⋁P(b',b')⋁P(c',c')
-P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`* 
+*` P(a,a)⋁P(b,b)⋁P(c,c)⋁P(a,b)⋁P(a,c)⋁P(b,c)⋁P(a',a')⋁P(b',b')⋁P(c',c')⋁
+P(a',b')⋁P(a',c')⋁P(b',c')⋁P(a,a')⋁P(b,b')⋁P(c,c')`* 
 
 **Les ponts sont horizontaux ou verticaux:**
 
@@ -76,6 +78,9 @@ P(a',b') P(a',c') P(b',c') P(a,a')P(b,b')P(c,c')`*
 
 >![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/reli.PNG)
 
+**Pas de ponts entre 2 îles collées:**
+
+>![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/nonear.PNG)
 
 **Les ponts ne se croisent pas:**
 
@@ -108,11 +113,23 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 >![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/aumoins.PNG)
 
 
+**Probléme de cette propriété:**
+
+
+Ce que nous avons est une fnd et pour une obtenir une fnc, il faut de très nombreuses distributions, l'ordinateur ne supportera pas cette fnd car nous pouvons avoir de nombreux îles
+
+
+Nous remplaçons cette propriété par celle-ci:
+
+	> *∀a (Il(a)⇒¬(∃b1, ... ,bm+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bm+1)⋁Il'(bfm+1))⋀P(a,b1)⋀... ⋀P(a,bm+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bm≠bm+1)))   avec m = nombre îles-f(a)* 
+	
+Ce qui revient à dire qu'il existe m îles sans ponts avec a
+
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
 
 ## Programme Hashiwokakero
 
-Ce programme permet de sortir à l'écran la forme normale cojonctive à partir des instances que l'utilisateur à entrer ou d'en créer un fichier dimacs.
+Ce programme permet de sortir à l'écran la forme normale conjonctive à partir des instances que l'utilisateur à entrer ou d'en créer un fichier dimacs.
 
 Nous avons choisi le language java pour ce programme, vous pouvez retrouver le code avec le lien suivant :
 Comme le code est déjà commenté nous allons juste dire ce que représente chaque fichier java
@@ -131,7 +148,7 @@ Vide       |Vide  |**Ile a (2)**  |Vide
 **Ile c (1)**  | Vide | **Ile b (3**) | Vide
 
 
-Dans map.java les îles seront identifiés par des positions(position = numéro de la case du tableau, par exemple l'île C est à la position 9), les indices du tableau ou de la carte en x(ligne) et y(colonne) commencent à 1
+Dans map.java les îles seront identifiées par des positions(position = numéro de la case du tableau, par exemple l'île C est à la position 9), les indices du tableau ou de la carte en x(ligne) et y(colonne) commencent à 1
 
 ### Predicat.java
 
@@ -147,8 +164,8 @@ if(predicat.isNegatif()) predicat.setPositif();
 
 ### Ile.java
 
-C'est l'objet qui définit l'île, il est le fils de l'objet predicat (cela veut dire que ile comporte les mêmes fonctions qu'un predicat)
-On peut récupérer sa position, le n (nombre de ponts reliés à l'île) et si elle se situe sur la 1ere grille oue la 2eme
+C'est l'objet qui définit l'île, il est le fils de l'objet predicat (cela veut dire que Ile.java comporte les mêmes fonctions qu'un predicat)
+On peut récupérer sa position, le n (nombre de ponts reliés à l'île) et si elle se situe sur la 1ere grille ou sur la 2eme grille
 
 ### Pont.java
 
@@ -183,7 +200,7 @@ modele.addClause(clause1);
 
 ### Definition.java
 
-Ceci n'est pas un objet mais un fichier qui contient des fonctions qui permettent de récuperer les définitions que nous avous dit au début
+Ceci n'est pas un objet mais un fichier qui contient des fonctions qui permettent de récuperer les définitions que nous avons dit au début
 * **Définition L(a,b):**
 * **Définition C(a,b):**
 * **Définition Cr(a,b,c,d):**
@@ -196,11 +213,11 @@ C'est un fichier qui contient des fonctions "outils" qui simplifie le code de d'
 
 ### Proprietes.java
 
-C'est un fichier qui contient toutes les fonctions qui représentent les propriétes que nous avons caractériser (les ponts ne se croisent pas, les ponts sont horizontaux ou verticaux, etc), ils renvoient tous un modéle qui définit la propriété
+C'est un fichier qui contient toutes les fonctions qui représentent les propriétes que nous avons caractériser (les ponts ne se croisent pas, les ponts sont horizontaux ou verticaux, etc), ils renvoient tous un modéle qui caractérise la propriété
 
 ### CommandsManager.java
 
-Elle permet de récuper la commande que l'utilisateur rentre dans la console et d'excuter cette commande
+Elle permet de récuperer la commande que l'utilisateur rentre dans la console et d'executer cette commande
 
 
 **Commandes**:
@@ -214,7 +231,8 @@ Elle permet de récuper la commande que l'utilisateur rentre dans la console et 
 	> Affiche la fnc finale simplifié(élimination des clauses valides et des clauses contenant une autre clause)
 * dimacs
 	> Créer le fichier dimacs que nous verrons comment aprés
-	
+* exit
+	> Stopper le programme
 	
 Exemple:
 
@@ -254,22 +272,12 @@ Aucun croisement entre iles
 (-P(9',3') V -P(9,11))^
 (-P(9',3') V -P(9',11'))^
 (-P(9,11) V -P(9',11'))^
-(P(3',3') V P(3,9) V P(3',9') V P(3,11))^
-(P(3',3') V P(3,9) V P(3',9') V P(3',11'))^
-(P(3',3') V P(3,9) V P(3,11) V P(3',11'))^
-(P(3',3') V P(3',9') V P(3,11) V P(3',11'))^
-(P(3,9) V P(3',9') V P(3,11) V P(3',11'))^
-(P(9,3) V P(9',3') V P(9',9') V P(9,11) V P(9',11'))^
-(P(11,3) V P(11',3') V P(11,9))^
-(P(11,3) V P(11',3') V P(11',9'))^
-(P(11,3) V P(11',3') V P(11',11'))^
-(P(11,3) V P(11,9) V P(11',9'))^
-(P(11,3) V P(11,9) V P(11',11'))^
-(P(11,3) V P(11',9') V P(11',11'))^
-(P(11',3') V P(11,9) V P(11',9'))^
-(P(11',3') V P(11,9) V P(11',11'))^
-(P(11',3') V P(11',9') V P(11',11'))^
-(P(11,9) V P(11',9') V P(11',11'))
+(P(3',3') V P(3,9) V P(3',9') V P(3,11) V P(3',11'))^
+(P(11,3) V P(11',3') V P(11,9) V P(11',9'))^
+(P(11,3) V P(11',3') V P(11,9) V P(11',11'))^
+(P(11,3) V P(11',3') V P(11',9') V P(11',11'))^
+(P(11,3) V P(11,9) V P(11',9') V P(11',11'))^
+(P(11',3') V P(11,9) V P(11',9') V P(11',11'))
 ```
 
 Un peu difficile de voir par nous mêmes si c'est une bonne fnc, faisons le avec un plus petit :
@@ -296,9 +304,7 @@ Aucun croisement entre iles
 (-P(9,9))^
 (-P(9',9'))^
 (-P(1',9') V P(1,9))^
-(-P(9,1) V -P(9',1'))^
-(P(1',1') V P(1,9) V P(1',9'))^
-(P(9,1) V P(9',1') V P(9',9'))
+(-P(9,1) V -P(9',1'))
 ```
 
 Là nous pouvons voir par nous-mêmes que la seule solution est P(1,9)
@@ -306,7 +312,7 @@ Là nous pouvons voir par nous-mêmes que la seule solution est P(1,9)
 
 ## Programme Dimacs
 
-C'est un programme en java que nous avons fait pour lire des fichiers dimacs et de transformer les clauses en 3-SAT pour utiliser le solveur à la suite (Nous avons pris le solveur SAT4J disponible sur interner)
+C'est un programme en java que nous avons fait pour lire des fichiers dimacs et de transformer les clauses du dimacs en 3-SAT pour utiliser le solveur à la suite (Nous avons pris le solveur SAT4J disponible sur internet)
 
 ### PredicatID.java
 Même principe que le programme d'avant mais comme on travaille dans le domaine dimacs , on lui demande d'ajouter un id(positif ou négatif) qui définit la variable par exemple x1, x2
@@ -323,11 +329,11 @@ Un objet qui représente une clause de PredicatID. C'est le même principe
 
 ### ModeleDimacs.java
 
-C'est un objet qui représente modéle qui contient les clauses ClauseDimacs
+C'est un objet qui représente un modéle qui contient les clauses ClauseDimacs
 
 ### Dimacs.java
 
-Elle représente un fichier dimacs, on l'a déclare en lui donnant le lien vers un fichier dimacs. Cet objet permet de lire un dimacs , d'afficher son contenu et d'en créer un ModeleDimacs ou d'écrire un fichier dimacs à partir d'un ModeleDimacs.
+Elle représente un fichier dimacs, on la déclare en lui donnant le lien vers un fichier dimacs. Cet objet permet de lire un dimacs , d'afficher son contenu et d'en créer un ModeleDimacs ou d'écrire un fichier dimacs à partir d'un ModeleDimacs.
 
 ```
 Dimacs dimacs = new Dimacs("mondimaxs.txt");
@@ -336,7 +342,7 @@ ModeleDimacs modele = dimacs.getModeleFromDimacs();
 modele = Sat3.get3SAT(modele);
 modele.print(); // on affiche notre nouveau modéle
 dimacs.writeModele(modele);
-console.print(dimacs.readFile()); // on affiche le nouveau contenue de notr fichier dimacs
+console.print(dimacs.readFile()); // on affiche le nouveau contenue de notre fichier dimacs
 ```
 ### Sat3.java
 
@@ -352,9 +358,9 @@ Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche 
 * new dimacs [nom_fichier]
  > Créer un objet dimacs avec [nom_fichier] comme entrée
 * new modele
- > Créer un nouveau modele pour l'utilisateur
+ > Créer un nouveau modéle pour l'utilisateur
 * add [variables]
- > Ajoute une clause au modele avec les variables données en entrée
+ > Ajoute une clause au modéle avec les variables données en entrée
 * print modele
  > Affiche le modéle
 * print dimacs
@@ -371,7 +377,8 @@ Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche 
  > Résous le fichier dimacs
 * solve modele
  > Résous le modéle
- 
+ * exit
+	> Stopper le programme
  **Exemple:**
  
  
@@ -413,4 +420,108 @@ add 11
 modele 3sat
 solve modele
 La fnc est insatisfaisable
+new modele
+add 5
+modele sat3
+Commande inconnue
+modele 3sat
+print modele
+(5 V 289 V 248)^
+(5 V 289 V -248)^
+(5 V -289 V 248)^
+(5 V -289 V -248)
+new modele
+add 4 5
+modele 3sat
+to dimacs
+manque le nom de votre fichier
+to dimacs test3
+print dimacs
+p cnf 256 2
+4 5 256 0
+4 5 -256 0
+
+solve dimacs
+La fnc est satisfaisable
+Voici un domaine de validité :  : 
+-4 vaut vrai
+5 vaut vrai
+-256 vaut vrai
 ```
+
+## Lien entre les 2 programmes:
+
+Si on revient sur notre premier programme, nous avons la commande suivante :
+> dimacs
+
+
+Comme vous l'avez devinez, le programme hashiwokakero va se servir du programme Dimacs pour transformer son modéle en un ModeleDimacs afin de créer un fichier dimacs
+
+
+Des exemples et tests entre les 2 programmes pour trouver des solutions de ponts se ferra à la soutenance comme l'indique le polycopié de projet.
+
+
+Mais profitions un peu pour en avoir un petit aperçu.
+
+
+Utilisons un petit exemple rapide:
+
+
+1          |2     |3          |4
+-----------|------|-----------|------
+**Ile a (1)**       |Vide  |Vide  |Vide
+  **Ile b (1)**     | Vide |   Vide    | Vide
+   Vide    | Vide |   Vide    | Vide
+| Vide | Vide | Vide
+
+
+Ne nous préoccupons pas de comment nous allons définir les id des ponts pour le prédicatID, cela sera expliqué à la soutenance.
+
+
+Nous devons avoir une fnc avec aucune solution de ponts, testons donc : 
+
+```
+map 4
+ile 1 1 1
+ile 2 1 1
+fnc all
+Tous les ponts sont horizontaux ou verticaux entre eux
+Aucun pont est à coté d'un autre pont
+Aucun croisement entre iles
+------------FNC FINALE------------
+(-P(1,1))^
+(-P(1',1'))^
+(-P(5,5))^
+(-P(5',5'))^
+(-P(1,5))^
+(-P(1',5'))^
+(-P(5,1) V -P(5',1'))
+dimacs
+
+
+
+new dimacs hashiwokakero_fnc.dim
+print dimacs
+p cnf 550 7
+-11 0
+-110 0
+-55 0
+-550 0
+-15 0
+-150 0
+-15 -150 0
+
+solve dimacs
+La fnc est satisfaisable
+Voici un domaine de validité : 
+-11 vaut vrai
+-15 vaut vrai
+-55 vaut vrai
+-110 vaut vrai
+-150 vaut vrai
+-550 vaut vrai
+```
+
+Toutes les négations sont vrai donc nous avons bien aucune solution de ponts
+
+
