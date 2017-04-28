@@ -226,7 +226,7 @@ Elle permet de récuperer la commande que l'utilisateur rentre dans la console e
 * ile x y n
 	> Ajoute une Ile(n) aux coordonnées x et y
 * fnc [propriete]
-	> Affiche à la console la fnc de la propriété : {nosame, nonear,2p, crois, auplus, aumoins, horivert}
+	> Affiche à la console la fnc de la propriété : {nosame, nonear,2p, crois, auplus, aumoins, horivert} -> voir dans le code à quoi correspondent ces noms
 * fnc all
 	> Affiche la fnc finale simplifié(élimination des clauses valides et des clauses contenant une autre clause)
 * dimacs
