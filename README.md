@@ -108,4 +108,195 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 
 Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous faisons la conjonction de chaque règle.
 
+## Programme Hashiwokakero
 
+Ce programme permet de sortir à l'écran la forme normale cojonctive à partir des instances que l'utilisateur à entrer ou d'en créer un fichier dimacs.
+
+Nous avons choisi le language java pour ce programme, vous pouvez retrouver le code avec le lien suivant :
+Comme le code est déjà commenté nous allons juste dire ce que représente chaque fichier java
+
+### Map.java
+
+C'est un objet java qui permet de représenter la carte du jeu Hashiwokakero.
+Reprenons notre exemple d'avant :
+
+
+1          |2     |3          |4
+-----------|------|-----------|------
+Vide       |Vide  |**Ile a (2)**  |Vide
+   Vide    | Vide |   Vide    | Vide
+   Vide    | Vide |   Vide    | Vide
+**Ile c (1)**  | Vide | **Ile b (3**) | Vide
+
+
+Dans map.java les îles seront identifiés par des positions(position = numéro de la case du tableau, par exemple l'île C est à la position 9), les indices du tableau ou de la carte en x(ligne) et y(colonne) commencent à 1
+
+### Predicat.java
+
+C'est un objet qui représente comme son nom l'indique un prédicat, on peut juste savoir si c'est une négation ou pas
+
+
+Exemple:
+```
+Predicat predicat = new Predicat();
+predicat.setNegatif();
+if(predicat.isNegatif()) predicat.setPositif();
+```
+
+### Ile.java
+
+C'est l'objet qui définit l'île, il est le fils de l'objet predicat (cela veut dire que ile comporte les mêmes fonctions qu'un predicat)
+On peut récupérer sa position, le n (nombre de ponts reliés à l'île) et si elle se situe sur la 1ere grille oue la 2eme
+
+### Pont.java
+
+Il définit un pont (fils de prédicat aussi), il comporte 2 îles avec lui.
+
+### Clause.java
+
+Comme son nom l'indique, ce fichier ou objet représente une clause de ponts.
+
+
+Par exemple:
+```
+...
+Clause clause = new Clause();
+clause.add(pont1);
+clause.add(pont2);
+clause.add(pont3);
+```
+Cela se traduit par {pont1 V pont2 V pont3}
+
+### Modele.java
+
+On retrouve ici l'objet modéle qui contient une liste de clauses.
+```
+...
+Modele modele = new Modele();
+modele.addClause(clause1);
+modele.addClause(clause1);
+modele.addClause(clause1);
+```
+--> {pont1 V pont2 V pont3, pont1 V pont2 V pont3, pont1 V pont2 V pont3}
+
+### Definition.java
+
+Ceci n'est pas un objet mais un fichier qui contient des fonctions qui permettent de récuperer les définitions que nous avous dit au début
+* **Définition L(a,b):**
+* **Définition C(a,b):**
+* **Définition Cr(a,b,c,d):**
+
+Chacune de ses fonctions renvoie un boolean.
+
+### Tools.java
+
+C'est un fichier qui contient des fonctions "outils" qui simplifie le code de d'autres fichiers. On peut y retrouver la fonction qui compare 2 îles, celle qui compare 2 ponts, celle qui regarde si une clause est déjà valide, etc
+
+### Proprietes.java
+
+C'est un fichier qui contient toutes les fonctions qui représentent les propriétes que nous avons caractériser (les ponts ne se croisent pas, les ponts sont horizontaux ou verticaux, etc), ils renvoient tous un modéle qui définit la propriété
+
+### CommandsManager.java
+
+Elle permet de récuper la commande que l'utilisateur rentre dans la console et d'excuter cette commande
+
+
+**Commandes**:
+* map n
+	> Créer une map de taille n
+* ile x y n
+	> Ajoute une Ile(n) aux coordonnées x et y
+* fnc [propriete]
+	> Affiche à la console la fnc de la propriété : {nosame, nonear,2p, crois, auplus, aumoins, horivert}
+* fnc all
+	> Affiche la fnc finale simplifié(élimination des clauses valides et des clauses contenant une autre clause)
+* dimacs
+	> Créer le fichier dimacs que nous verrons comment aprés
+	
+	
+Exemple:
+
+
+Testons avec notre exemple du début:
+
+
+1          |2     |3          |4
+-----------|------|-----------|------
+Vide       |Vide  |**Ile a (2)**  |Vide
+   Vide    | Vide |   Vide    | Vide
+   Vide    | Vide |   Vide    | Vide
+**Ile c (1)**  | Vide | **Ile b (3**) | Vide
+
+Rentrons à la console et voyons ce qu'elle affiche :
+```
+map 4
+ile 1 3 2
+ile 3 1 1
+ile 3 3 3
+fnc all
+Aucun pont est à coté d'un autre pont
+Aucun croisement entre iles
+------------FNC FINALE------------
+
+(-P(3,3))^
+(-P(3',3'))^
+(-P(9,9))^
+(-P(9',9'))^
+(-P(11,11))^
+(-P(11',11'))^
+(-P(3,9))^
+(-P(3',9') V P(3,9))^
+(-P(3',11') V P(3,11))^
+(-P(9',11') V P(9,11))^
+(-P(3',9') V -P(3,11) V -P(3',11'))^
+(-P(9',3') V -P(9,11))^
+(-P(9',3') V -P(9',11'))^
+(-P(9,11) V -P(9',11'))^
+(P(3',3') V P(3,9) V P(3',9') V P(3,11))^
+(P(3',3') V P(3,9) V P(3',9') V P(3',11'))^
+(P(3',3') V P(3,9) V P(3,11) V P(3',11'))^
+(P(3',3') V P(3',9') V P(3,11) V P(3',11'))^
+(P(3,9) V P(3',9') V P(3,11) V P(3',11'))^
+(P(9,3) V P(9',3') V P(9',9') V P(9,11) V P(9',11'))^
+(P(11,3) V P(11',3') V P(11,9))^
+(P(11,3) V P(11',3') V P(11',9'))^
+(P(11,3) V P(11',3') V P(11',11'))^
+(P(11,3) V P(11,9) V P(11',9'))^
+(P(11,3) V P(11,9) V P(11',11'))^
+(P(11,3) V P(11',9') V P(11',11'))^
+(P(11',3') V P(11,9) V P(11',9'))^
+(P(11',3') V P(11,9) V P(11',11'))^
+(P(11',3') V P(11',9') V P(11',11'))^
+(P(11,9) V P(11',9') V P(11',11'))
+```
+
+Un peu difficile de voir par nous mêmes si c'est une bonne fnc, faisons le avec un plus petit :
+
+1          |2     |3          |4
+-----------|------|-----------|------
+**Ile a (1)**       |Vide  |Vide  |Vide
+   Vide    | Vide |   Vide    | Vide
+  **Ile b (1)**   | Vide |   Vide    | Vide
+Vide  | Vide | Vide | Vide
+
+```
+map 4
+ile 1 1 1
+ile 3 1 1
+fnc all
+Tous les ponts sont horizontaux ou verticaux entre eux
+Aucun pont est à coté d'un autre pont
+Aucun croisement entre iles
+------------FNC FINALE------------
+
+(-P(1,1))^
+(-P(1',1'))^
+(-P(9,9))^
+(-P(9',9'))^
+(-P(1',9') V P(1,9))^
+(-P(9,1) V -P(9',1'))^
+(P(1',1') V P(1,9) V P(1',9'))^
+(P(9,1) V P(9',1') V P(9',9'))
+```
+
+Là nous pouvons voir par nous-mêmes que le seul model est P(1,9)
