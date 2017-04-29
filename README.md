@@ -31,7 +31,7 @@ Les variables utilisées pour les coordonnées sont un couple de naturels compri
 	> *Il(a)⋀Il(b)⋀Y(a)=Y(b)*
 * **Définition Cr(a,b,c,d):**
  	> *L(a,b)⋀C(c,d)⋀Y(a)<Y(c)<Y(b)⋀ X(c)<X(a)<X(d)*
-* ** Pas de ponts entre 2 îles collées:**
+* **Pas de ponts entre 2 îles collées:**
 	> *∀a,b (Il(a)⋀Il(b)⋀a≠b⋀(X(a)=X(b)+-1 ⋁ Y(a) == Y(b) +-1)⇒¬P(a,b)⋀¬P(a',b'))
 * **Les ponts sont horizontaux ou verticaux:**
  	> *∀a,b (Il(a)⋀Il(b)⋀a≠b ⋀P(a,b)⇒((L(a,b)⋁C(a,b))⋀(¬L(a,b)⋁¬C(a,b)))*
@@ -118,7 +118,7 @@ Ce que nous avons est une fnd et pour une obtenir une fnc, il faut de très nomb
 
 Nous remplaçons cette propriété par celle-ci:
 
-	> *∀a (Il(a)⇒¬(∃b1, ... ,bm+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bm+1)⋁Il'(bfm+1))⋀P(a,b1)⋀... ⋀P(a,bm+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bm≠bm+1)))   avec m = nombre îles-f(a)* 
+ ** *∀a (Il(a)⇒¬(∃b1, ... ,bm+1 ((Il(b1)⋁Il'(b1)) ⋀...⋀(Il(bm+1)⋁Il'(bfm+1))⋀P(a,b1)⋀... ⋀P(a,bm+1)⋀a≠b1⋀...⋀b1≠b2⋀...⋀bm≠bm+1)))   avec m = nombre îles-f(a)* **
 	
 Ce qui revient à dire qu'il existe m îles sans ponts avec a
 
@@ -375,7 +375,7 @@ Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche 
 * solve modele
  > Résous le modéle
  * exit
-	> Stopper le programme
+ > Stopper le programme
  **Exemple:**
  
  
