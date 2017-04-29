@@ -128,7 +128,9 @@ Pour la FNC finale, nous continuons avec toutes les autres possibilités et nous
 
 Ce programme permet de sortir à l'écran la forme normale conjonctive à partir des instances que l'utilisateur à entrer ou d'en créer un fichier dimacs.
 
-Nous avons choisi le language java pour ce programme, vous pouvez retrouver le code avec le lien suivant :
+Nous avons choisi le language java pour ce programme, vous pouvez retrouver le code en cliquant [ici](https://github.com/ElectrozDen/HASHIWOKAKERO/tree/master/hashi/main)
+
+
 Comme le code est déjà commenté nous allons juste dire ce que représente chaque fichier java
 
 ### Map.java
@@ -309,7 +311,7 @@ Là nous pouvons voir par nous-mêmes que la seule solution est P(1,9)
 
 ## Programme Dimacs
 
-C'est un programme en java que nous avons fait pour lire des fichiers dimacs et de transformer les clauses du dimacs en 3-SAT pour utiliser le solveur à la suite (Nous avons pris le solveur SAT4J disponible sur internet)
+C'est un programme en java que nous avons fait pour lire des fichiers dimacs et de transformer les clauses du dimacs en 3-SAT pour utiliser le solveur à la suite (Nous avons pris le solveur SAT4J disponible sur internet). Vous pouvez retrouver le code du programme en cliquant [ici](https://github.com/ElectrozDen/HASHIWOKAKERO/tree/master/dimacs/main)
 
 ### PredicatID.java
 Même principe que le programme d'avant mais comme on travaille dans le domaine dimacs , on lui demande d'ajouter un id(positif ou négatif) qui définit la variable par exemple x1, x2
@@ -376,6 +378,8 @@ Permet de résoudre (Sat4J) un ModeleDimacs ou un Dimacs directement et affiche 
  > Résous le modéle
  * exit
  > Stopper le programme
+ 
+ 
  **Exemple:**
  
  
