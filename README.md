@@ -78,9 +78,6 @@ P(a',b')⋁P(a',c')⋁P(b',c')⋁P(a,a')⋁P(b,b')⋁P(c,c')`*
 
 >![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/reli.PNG)
 
-**Pas de ponts entre 2 îles collées:**
-
->![alt text](https://raw.githubusercontent.com/ElectrozDen/HASHIWOKAKERO/master/ressources/images/nonear.PNG)
 
 **Les ponts ne se croisent pas:**
 
